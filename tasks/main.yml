@@ -5,7 +5,7 @@
     path: /home/{{ username110 }}/.ssh/authorized_keys
     state: touch
 
-- name: set your public key to remote user {{ username110 }}
+- name: set your public key to remote user {{ username110 }} authorized_key file
   authorized_key:
     user: "{{ username110 }}"
     state: present
