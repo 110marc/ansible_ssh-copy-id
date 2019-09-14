@@ -1,2 +1,14 @@
 ---
 # tasks file for ansible_ssh-copy-id
+- name: validating authorized keys file for {{ username110 }}
+  file:
+    path: /home/{{ username110 }}/.ssh/authorized_keys
+    state: touch
+
+- name: set your public key to remote user {{ username110 }}
+  authorized_key:
+    user: "{{ username110 }}"
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    path: /home/{{ username110 }}/.ssh/authorized_keys
+    manage_dir: False
