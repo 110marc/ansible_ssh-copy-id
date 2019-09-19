@@ -1,5 +1,13 @@
 ---
 # tasks file for ansible_ssh-copy-id
+- name: validating ssh directory for {{ username110 }}
+  file:
+    path: /home/{{ username110 }}/.ssh
+    state: directory
+    mode: 0700
+    owner: "{{ username110 }}"
+    group: "{{ username110 }}"
+
 - name: validating authorized keys file for {{ username110 }}
   file:
     path: /home/{{ username110 }}/.ssh/authorized_keys
